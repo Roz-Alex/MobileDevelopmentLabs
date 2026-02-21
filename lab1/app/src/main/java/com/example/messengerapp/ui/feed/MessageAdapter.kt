@@ -3,6 +3,7 @@ package com.example.messengerapp.ui.feed
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -12,10 +13,15 @@ import com.example.messengerapp.data.local.MessageEntity
 
 class MessageAdapter : ListAdapter<MessageEntity, MessageAdapter.MessageViewHolder>(DiffCallback()) {
 
-    class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    // Хранит состояние лайков: id сообщения -> isLiked
+    private val likedItems = mutableSetOf<Int>()
+
+    inner class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvAvatar: TextView = itemView.findViewById(R.id.tv_avatar)
+        val tvUserName: TextView = itemView.findViewById(R.id.tv_message_user_id)
         val tvTitle: TextView = itemView.findViewById(R.id.tv_message_title)
         val tvBody: TextView = itemView.findViewById(R.id.tv_message_body)
-        val tvUserId: TextView = itemView.findViewById(R.id.tv_message_user_id)
+        val ivLike: ImageView = itemView.findViewById(R.id.iv_like)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
@@ -26,9 +32,27 @@ class MessageAdapter : ListAdapter<MessageEntity, MessageAdapter.MessageViewHold
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val msg = getItem(position)
+        val isLiked = likedItems.contains(msg.id)
+
+        // Аватарка — первая буква имени пользователя
+        holder.tvAvatar.text = "U${msg.userId}"
+        holder.tvUserName.text = "Пользователь #${msg.userId}"
         holder.tvTitle.text = msg.title.replaceFirstChar { it.uppercase() }
         holder.tvBody.text = msg.body
-        holder.tvUserId.text = "Пользователь #${msg.userId}"
+
+        // Иконка лайка
+        holder.ivLike.setImageResource(
+            if (isLiked) R.drawable.ic_like_filled else R.drawable.ic_like_outline
+        )
+
+        holder.ivLike.setOnClickListener {
+            if (likedItems.contains(msg.id)) {
+                likedItems.remove(msg.id)
+            } else {
+                likedItems.add(msg.id)
+            }
+            notifyItemChanged(position)
+        }
     }
 
     class DiffCallback : DiffUtil.ItemCallback<MessageEntity>() {

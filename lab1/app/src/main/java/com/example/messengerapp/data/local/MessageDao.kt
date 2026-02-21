@@ -7,7 +7,7 @@ import androidx.room.Query
 
 @Dao
 interface MessageDao {
-    @Query("SELECT * FROM messages")
+    @Query("SELECT * FROM messages ORDER BY createdAt ASC")
     suspend fun getAllMessages(): List<MessageEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

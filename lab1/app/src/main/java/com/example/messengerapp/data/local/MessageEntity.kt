@@ -8,5 +8,6 @@ data class MessageEntity(
     @PrimaryKey val id: Int,
     val userId: Int,
     val title: String,
-    val body: String
+    val body: String,
+    val createdAt: Long = System.currentTimeMillis()
 )
