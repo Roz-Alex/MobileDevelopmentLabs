@@ -1,9 +1,10 @@
 # Built application files
-*.apk
+# *.apk
 *.aar
 *.ap_
 *.aab
 
+*.gitignore
 # Files for the ART/Dalvik VM
 *.dex
 

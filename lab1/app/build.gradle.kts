@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.messenger"
-    compileSdk = 34
+    namespace = "com.example.messengerapp"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.messenger"
+        applicationId = "com.example.messengerapp"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
@@ -45,4 +45,10 @@ dependencies {
     // Navigation Component
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
+
+    // viewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
+    implementation("androidx.activity:activity-ktx:1.10.1")
+    implementation("androidx.fragment:fragment-ktx:1.8.6")
 }

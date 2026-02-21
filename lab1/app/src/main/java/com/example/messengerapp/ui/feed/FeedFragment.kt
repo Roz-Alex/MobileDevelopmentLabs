@@ -1,4 +1,4 @@
-package com.example.messenger.ui.feed
+package com.example.messengerapp.ui.feed
 
 import android.os.Bundle
 import android.util.Log
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.messenger.R
+import com.example.messengerapp.R
 
 class FeedFragment : Fragment() {
 

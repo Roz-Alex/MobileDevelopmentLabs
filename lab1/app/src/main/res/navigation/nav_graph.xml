@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/feedFragment"
-        android:name="com.example.messenger.ui.feed.FeedFragment"
+        android:name="com.example.messengerapp.ui.feed.FeedFragment"
         android:label="Лента" />
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.messenger.ui.profile.ProfileFragment"
+        android:name="com.example.messengerapp.ui.profile.ProfileFragment"
         android:label="Профиль" />
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.messenger.ui.settings.SettingsFragment"
+        android:name="com.example.messengerapp.ui.settings.SettingsFragment"
         android:label="Настройки" />
 
 </navigation>
